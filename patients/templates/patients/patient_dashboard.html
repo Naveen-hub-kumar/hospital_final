@@ -79,11 +79,11 @@
 
         <h2>🏥 Patient Panel</h2>
 
-        <a href="#">Dashboard</a>
+        <a href="/patient-dashboard/">Dashboard</a>
 
-        <a href="#">My Appointments</a>
+        <a href="appointments/">My Appointments</a>
 
-        <a href="#">Book Appointment</a>
+        <a href="/appointments/book/">Book Appointment</a>
 
         <a href="/logout/">Logout</a>
 
@@ -155,6 +155,10 @@
         </div>
 
     </div>
+    {% block content %}
+
+    {% endblock content %}
+
 
 </body>
 </html>
