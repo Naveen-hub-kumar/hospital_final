@@ -1,21 +1,73 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>View Patient</title>
+
 </head>
-<body>
 
-    <h1>Patient Details</h1>
+<body style="
+        font-family:Arial;
+        background:#f4f6f9;
+">
 
-    <p>Name: {{ patient.name }}</p>
+    <div style="
+            width:500px;
+            margin:50px auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+    ">
 
-    <p>Age: {{ patient.age }}</p>
+        <h1 style="
+                text-align:center;
+                margin-bottom:30px;
+        ">
 
-    <p>Gender: {{ patient.gender }}</p>
+            Patient Details
 
-    <p>Phone: {{ patient.phone }}</p>
+        </h1>
 
-    <p>Address: {{ patient.address }}</p>
+        <p><b>Name:</b> {{ patient.name }}</p>
+
+        <hr>
+
+        <p><b>Age:</b> {{ patient.age }}</p>
+
+        <hr>
+
+        <p><b>Gender:</b> {{ patient.gender }}</p>
+
+        <hr>
+
+        <p><b>Phone:</b> {{ patient.phone }}</p>
+
+        <hr>
+
+        <p><b>Address:</b> {{ patient.address }}</p>
+
+        <br><br>
+
+        <!-- BACK BUTTON -->
+
+        <a href="/patients/"
+           style="
+                background:#007bff;
+                color:white;
+                padding:10px 20px;
+                text-decoration:none;
+                border-radius:5px;
+                font-weight:bold;
+           ">
+
+            ← Back to Patient List
+
+        </a>
+
+    </div>
 
 </body>
+
 </html>

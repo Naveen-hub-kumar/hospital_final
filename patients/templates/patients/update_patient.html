@@ -1,49 +1,159 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>Update Patient</title>
+
 </head>
-<body>
 
-    <h1>Update Patient</h1>
+<body style="
+        font-family:Arial;
+        background:#f4f6f9;
+">
 
-    <form method="POST">
+    <div style="
+            width:500px;
+            margin:50px auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+    ">
 
-        {% csrf_token %}
+        <h1 style="
+                text-align:center;
+                margin-bottom:30px;
+        ">
 
-        <input type="text"
-               name="name"
-               value="{{ patient.name }}">
+            Update Patient
 
-        <br><br>
+        </h1>
 
-        <input type="number"
-               name="age"
-               value="{{ patient.age }}">
+        <form method="POST">
 
-        <br><br>
+            {% csrf_token %}
 
-        <input type="text"
-               name="gender"
-               value="{{ patient.gender }}">
+            <!-- NAME -->
 
-        <br><br>
+            <label><b>Name</b></label>
 
-        <input type="text"
-               name="phone"
-               value="{{ patient.phone }}">
+            <br><br>
 
-        <br><br>
+            <input type="text"
+                   name="name"
+                   value="{{ patient.name }}"
+                   style="
+                        width:100%;
+                        padding:10px;
+                   ">
 
-        <textarea name="address">{{ patient.address }}</textarea>
+            <br><br>
 
-        <br><br>
+            <!-- AGE -->
 
-        <button type="submit">
-            Update
-        </button>
+            <label><b>Age</b></label>
 
-    </form>
+            <br><br>
+
+            <input type="number"
+                   name="age"
+                   value="{{ patient.age }}"
+                   style="
+                        width:100%;
+                        padding:10px;
+                   ">
+
+            <br><br>
+
+            <!-- GENDER -->
+
+            <label><b>Gender</b></label>
+
+            <br><br>
+
+            <input type="text"
+                   name="gender"
+                   value="{{ patient.gender }}"
+                   style="
+                        width:100%;
+                        padding:10px;
+                   ">
+
+            <br><br>
+
+            <!-- PHONE -->
+
+            <label><b>Phone</b></label>
+
+            <br><br>
+
+            <input type="text"
+                   name="phone"
+                   value="{{ patient.phone }}"
+                   style="
+                        width:100%;
+                        padding:10px;
+                   ">
+
+            <br><br>
+
+            <!-- ADDRESS -->
+
+            <label><b>Address</b></label>
+
+            <br><br>
+
+            <textarea name="address"
+                      style="
+                            width:100%;
+                            padding:10px;
+                            height:100px;
+                      ">{{ patient.address }}</textarea>
+
+            <br><br>
+
+            <!-- UPDATE BUTTON -->
+
+            <button type="submit"
+                    style="
+                        width:100%;
+                        padding:12px;
+                        background:#007bff;
+                        color:white;
+                        border:none;
+                        border-radius:5px;
+                        font-size:16px;
+                        cursor:pointer;
+                    ">
+
+                Update Patient
+
+            </button>
+
+        </form>
+
+        <br>
+
+        <!-- BACK BUTTON -->
+
+        <a href="/patients/"
+           style="
+                background:#6c757d;
+                color:white;
+                padding:10px 20px;
+                text-decoration:none;
+                border-radius:5px;
+                font-weight:bold;
+                display:inline-block;
+           ">
+
+            ← Back to Patient List
+
+        </a>
+
+    </div>
 
 </body>
+
 </html>

@@ -78,4 +78,4 @@ def delete_doctor(request, id):
 
     doctor.delete()
 
-    return redirect('/doctors/list/')
+    return redirect('/doctors/')

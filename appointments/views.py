@@ -35,7 +35,7 @@ def book_appointment(request):
 
         )
 
-        return redirect('/appointments/list/')
+        return redirect('/appointments/')
 
     return render(request,
                   'appointments/book_appointment.html',
@@ -90,28 +90,31 @@ def update_appointment(request, id):
 
     if request.method == 'POST':
 
-        doctor_id = request.POST['doctor']
+        doctor_id = request.POST.get('doctor')
 
-        patient_id = request.POST['patient']
+        patient_id = request.POST.get('patient')
 
-        appointment.appointment_date = request.POST['appointment_date']
+        appointment_date = request.POST.get('appointment_date')
 
         appointment.doctor = Doctor.objects.get(id=doctor_id)
 
         appointment.patient = Patient.objects.get(id=patient_id)
 
+        appointment.appointment_date = appointment_date
+
         appointment.save()
 
-        return redirect('/appointments/list/')
+        return redirect('/appointments/')
 
-    return render(request,
-                  'appointments/update_appointment.html',
-                  {
-                      'appointment': appointment,
-                      'doctors': doctors,
-                      'patients': patients
-                  })
-
+    return render(
+        request,
+        'appointments/update_appointment.html',
+        {
+            'appointment': appointment,
+            'doctors': doctors,
+            'patients': patients
+        }
+    )
 
 # DELETE APPOINTMENT
 
@@ -121,4 +124,4 @@ def delete_appointment(request, id):
 
     appointment.delete()
 
-    return redirect('/appointments/list/')
+    return redirect('/appointments/')
