@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Patient Dashboard</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family:Arial;
+            background:#f4f6f9;
+        }
+
+        .sidebar{
+            width:250px;
+            height:100vh;
+            background:#007bff;
+            position:fixed;
+            color:white;
+            padding:20px;
+        }
+
+        .sidebar h2{
+            text-align:center;
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:12px;
+            margin-top:10px;
+            border-radius:5px;
+        }
+
+        .sidebar a:hover{
+            background:white;
+            color:#007bff;
+        }
+
+        .main{
+            margin-left:270px;
+            padding:20px;
+        }
+
+        .card{
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            margin-bottom:20px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        table th, table td{
+            border:1px solid #ddd;
+            padding:10px;
+        }
+
+        table th{
+            background:#007bff;
+            color:white;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2>🏥 Patient Panel</h2>
+
+        <a href="#">Dashboard</a>
+
+        <a href="#">My Appointments</a>
+
+        <a href="#">Book Appointment</a>
+
+        <a href="/logout/">Logout</a>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+        <div class="card">
+
+            <h2>Welcome {{ request.user.username }}</h2>
+
+            <p>Role: {{ role }}</p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>My Details</h2>
+
+            <p><b>Name:</b> {{ patient.name }}</p>
+
+            <p><b>Age:</b> {{ patient.age }}</p>
+
+            <p><b>Gender:</b> {{ patient.gender }}</p>
+
+            <p><b>Phone:</b> {{ patient.phone }}</p>
+
+            <p><b>Address:</b> {{ patient.address }}</p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>My Appointments</h2>
+
+            <table>
+
+                <tr>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                </tr>
+
+                {% for appointment in appointments %}
+
+                <tr>
+
+                    <td>{{ appointment.doctor }}</td>
+
+                    <td>{{ appointment.appointment_date }}</td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="2">
+                        No Appointments Found
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

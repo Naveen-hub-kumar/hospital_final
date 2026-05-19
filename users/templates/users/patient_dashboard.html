@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Patient Dashboard</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family:Arial;
+            display:flex;
+            background:#f4f6f9;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar{
+            width:250px;
+            background:#28a745;
+            color:white;
+            height:100vh;
+            padding:20px;
+        }
+
+        .sidebar h2{
+            text-align:center;
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:12px;
+            margin:10px 0;
+            border-radius:6px;
+        }
+
+        .sidebar a:hover{
+            background:rgba(255,255,255,0.2);
+        }
+
+        /* MAIN */
+
+        .main{
+            flex:1;
+            padding:20px;
+        }
+
+        .topbar{
+            background:white;
+            padding:15px;
+            border-radius:10px;
+            display:flex;
+            justify-content:space-between;
+        }
+
+        /* PROFILE */
+
+        .profile{
+            background:white;
+            margin-top:20px;
+            padding:20px;
+            border-radius:10px;
+        }
+
+        /* TABLE */
+
+        .box{
+            background:white;
+            margin-top:20px;
+            padding:20px;
+            border-radius:10px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th,td{
+            padding:10px;
+            border-bottom:1px solid #ddd;
+        }
+
+        th{
+            background:#f4f6f9;
+        }
+
+        button{
+            padding:10px 20px;
+            border:none;
+            background:#28a745;
+            color:white;
+            border-radius:6px;
+            cursor:pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <h2>🏥 PATIENT</h2>
+
+    <a href="/patient-dashboard/">
+        📊 Dashboard
+    </a>
+
+    <a href="#">
+        📅 My Appointments
+    </a>
+
+    <a href="#">
+        ➕ Book Appointment
+    </a>
+
+    <a href="/logout/">
+        🚪 Logout
+    </a>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <h2>
+            Welcome Patient
+        </h2>
+
+        <div>
+            {{ request.user.username }}
+        </div>
+
+    </div>
+
+    <!-- PROFILE -->
+
+    <div class="profile">
+
+        <h3>Patient Details</h3>
+
+        <p>
+            <b>Name:</b>
+            {{ patient.name }}
+        </p>
+
+        <p>
+            <b>Age:</b>
+            {{ patient.age }}
+        </p>
+
+        <p>
+            <b>Phone:</b>
+            {{ patient.phone }}
+        </p>
+
+    </div>
+
+    <!-- APPOINTMENTS -->
+
+    <div class="box">
+
+        <h3>My Appointments</h3>
+
+        <table>
+
+            <tr>
+
+                <th>Doctor</th>
+
+                <th>Date</th>
+
+            </tr>
+
+            {% for a in appointments %}
+
+            <tr>
+
+                <td>{{ a.doctor }}</td>
+
+                <td>{{ a.appointment_date }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        <br>
+
+        <button>
+            Book Appointment
+        </button>
+
+    </div>
+
+</div>
+
+</body>
+</html>

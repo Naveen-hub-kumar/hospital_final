@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>View Appointment</title>
+
+</head>
+
+<body style="
+        font-family:Arial, sans-serif;
+        background:#f4f6f9;
+        margin:0;
+        padding:20px;
+">
+
+    <div style="
+            width:400px;
+            margin:50px auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+    ">
+
+        <h1 style="
+                text-align:center;
+                color:#333;
+                margin-bottom:30px;
+        ">
+
+            Appointment Details
+
+        </h1>
+
+        <div style="
+                margin-bottom:20px;
+                font-size:18px;
+                color:#555;
+        ">
+
+            <p style="margin-bottom:15px;">
+
+                <strong>Doctor:</strong>
+
+                {{ appointment.doctor.name }}
+
+            </p>
+
+            <p style="margin-bottom:15px;">
+
+                <strong>Patient:</strong>
+
+                {{ appointment.patient.name }}
+
+            </p>
+
+            <p style="margin-bottom:15px;">
+
+                <strong>Date:</strong>
+
+                {{ appointment.appointment_date }}
+
+            </p>
+
+        </div>
+
+        <div style="text-align:center;">
+
+            <a href="/appointments"
+               style="
+                    background:#007bff;
+                    color:white;
+                    padding:10px 20px;
+                    text-decoration:none;
+                    border-radius:5px;
+                    font-weight:bold;
+               ">
+
+                Back
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+
+
+
+
+<h2>Add Patient</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Username:</label>
+    {{ form.username }} <br><br>
+
+    <label>Password:</label>
+    {{ form.password }} <br><br>
+
+    <label>Age:</label>
+    {{ form.age }} <br><br>
+    
+    <label>Gender:</label>
+    {{ form.gender }} <br><br>
+
+
+    <label>Phone:</label>
+    {{ form.phone }} <br><br>
+
+    <label>Address:</label>
+    {{ form.address }} <br><br>
+
+    <button type="submit">Save Patient</button>
+</form>
+
+
+
+
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+
+    <title>Add Patient</title>
+
+</head>
+
+<body>
+
+    <h1>Add Patient</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input type="text"
+               name="name"
+               placeholder="Name">
+
+        <br><br>
+
+        <input type="number"
+               name="age"
+               placeholder="Age">
+
+        <br><br>
+
+        <input type="text"
+               name="gender"
+               placeholder="Gender">
+
+        <br><br>
+
+        <input type="text"
+               name="phone"
+               placeholder="Phone">
+
+        <br><br>
+
+        <textarea name="address"
+                  placeholder="Address"></textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Save Patient
+        </button>
+
+    </form>
+
+</body>
+</html> {% endcomment %}

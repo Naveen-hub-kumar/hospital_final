@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Admin Dashboard</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family:Arial;
+            background:#f4f6f9;
+        }
+
+        .sidebar{
+            width:250px;
+            height:100vh;
+            background:#343a40;
+            color:white;
+            position:fixed;
+            padding:20px;
+        }
+
+        .sidebar h2{
+            text-align:center;
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:12px;
+            margin-top:10px;
+            border-radius:5px;
+        }
+
+        .sidebar a:hover{
+            background:white;
+            color:#343a40;
+        }
+
+        .main{
+            margin-left:270px;
+            padding:20px;
+        }
+
+        .cards{
+            display:flex;
+            gap:20px;
+            margin-bottom:20px;
+        }
+
+        .card{
+            flex:1;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            text-align:center;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .table-box{
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            margin-bottom:20px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        table th, table td{
+            border:1px solid #ddd;
+            padding:10px;
+        }
+
+        table th{
+            background:#343a40;
+            color:white;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2>🏥 Admin Panel</h2>
+
+        <a href="#">Dashboard</a>
+
+        <a href="/doctors/add/">
+    Add Doctor
+</a>
+
+ <a href="/doctors">
+    Doctor list
+</a>
+
+
+        <a href="/patients">Patients</a>
+
+        <a href="/appointments">Appointments</a>
+
+        <a href="/logout/">Logout</a>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+        <h1>Welcome Admin</h1>
+
+        <!-- CARDS -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h2>Total Doctors</h2>
+
+                <h1>{{ doctors.count }}</h1>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Total Patients</h2>
+
+                <h1>{{ patients.count }}</h1>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Total Appointments</h2>
+
+                <h1>{{ appointments.count }}</h1>
+
+            </div>
+
+        </div>
+
+        <!-- DOCTORS -->
+
+        <div class="table-box">
+
+            <h2>Doctors</h2>
+
+            <table>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                    <th>Phone</th>
+                </tr>
+
+                {% for doctor in doctors %}
+
+                <tr>
+
+                    <td>{{ doctor.name }}</td>
+
+                    <td>{{ doctor.specialization }}</td>
+
+                    <td>{{ doctor.phone }}</td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="3">
+                        No Doctors Found
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <!-- PATIENTS -->
+
+        <div class="table-box">
+
+            <h2>Patients</h2>
+
+            <table>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Phone</th>
+                </tr>
+
+                {% for patient in patients %}
+
+                <tr>
+
+                    <td>{{ patient.name }}</td>
+
+                    <td>{{ patient.age }}</td>
+
+                    <td>{{ patient.phone }}</td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="3">
+                        No Patients Found
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

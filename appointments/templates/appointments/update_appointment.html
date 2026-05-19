@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Update Appointment</title>
+
+</head>
+
+<body style="
+        font-family:Arial, sans-serif;
+        background:#f4f6f9;
+        margin:0;
+        padding:20px;
+">
+
+    <div style="
+            width:400px;
+            margin:50px auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+    ">
+
+        <h1 style="
+                text-align:center;
+                color:#333;
+                margin-bottom:30px;
+        ">
+
+            Update Appointment
+
+        </h1>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label style="
+                    font-weight:bold;
+                    color:#555;
+            ">
+
+                Doctor
+
+            </label>
+
+            <br><br>
+
+            <select name="doctor"
+                    style="
+                        width:100%;
+                        padding:10px;
+                        border:1px solid #ccc;
+                        border-radius:5px;
+                    ">
+
+                {% for doctor in doctors %}
+
+                <option value="{{ doctor.id }}">
+
+                    {{ doctor.name }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <br><br>
+
+            <label style="
+                    font-weight:bold;
+                    color:#555;
+            ">
+
+                Patient
+
+            </label>
+
+            <br><br>
+
+            <select name="patient"
+                    style="
+                        width:100%;
+                        padding:10px;
+                        border:1px solid #ccc;
+                        border-radius:5px;
+                    ">
+
+                {% for patient in patients %}
+
+                <option value="{{ patient.id }}">
+
+                    {{ patient.name }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <br><br>
+
+            <label style="
+                    font-weight:bold;
+                    color:#555;
+            ">
+
+                Appointment Date
+
+            </label>
+
+            <br><br>
+
+            <input type="date"
+                   name="appointment_date"
+                   value="{{ appointment.appointment_date|date:'Y-m-d' }}"
+                   style="
+                        width:100%;
+                        padding:10px;
+                        border:1px solid #ccc;
+                        border-radius:5px;
+                   ">
+
+            <br><br>
+
+            <button type="submit"
+                    style="
+                        width:100%;
+                        padding:12px;
+                        background:#007bff;
+                        color:white;
+                        border:none;
+                        border-radius:5px;
+                        font-size:16px;
+                        cursor:pointer;
+                    ">
+
+                Update Appointment
+
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

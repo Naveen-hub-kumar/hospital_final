@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Add Doctor</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f4f6f9;
+        }
+
+        .container{
+            width:400px;
+            margin:50px auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin-top:10px;
+        }
+
+        button{
+            margin-top:15px;
+            padding:10px;
+            width:100%;
+            background:#007bff;
+            color:white;
+            border:none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Add Doctor</h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input type="text"
+                   name="name"
+                   placeholder="Doctor Name">
+
+            <input type="text"
+                   name="specialization"
+                   placeholder="Specialization">
+
+            <input type="text"
+                   name="phone"
+                   placeholder="Phone Number">
+
+            <button type="submit">
+                Save Doctor
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
