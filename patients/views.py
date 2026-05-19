@@ -115,33 +115,32 @@ def view_patient(request, id):
 
 # UPDATE PATIENT
 
-def update_patient(request, id):
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Patient
 
+def update_patient(request, id):
     patient = get_object_or_404(Patient, id=id)
 
-    if request.method == 'POST':
+    if request.method == "POST":
+        patient.name = request.POST.get("name")
+        patient.age = request.POST.get("age")
+        patient.gender = request.POST.get("gender")
+        patient.phone = request.POST.get("phone")
+        patient.address = request.POST.get("address")
 
-        patient.name = request.POST['name']
-        patient.age = request.POST['age']
-        patient.gender = request.POST['gender']
-        patient.phone = request.POST['phone']
-        patient.address = request.POST['address']
+        patient.save()  # ✅ SAVE TO DATABASE
 
-        patient.save()
+        return redirect("patient_list")  # ✅ REDIRECT AFTER UPDATE
 
-        return redirect('/patients/list/')
-
-    return render(request,
-                  'patients/update_patient.html',
-                  {'patient': patient})
-
+    return render(request, "patients/update_patient.html", {"patient": patient})
 
 # DELETE PATIENT
+
 
 def delete_patient(request, id):
 
     patient = get_object_or_404(Patient, id=id)
-
     patient.delete()
 
-    return redirect('/patients/list/')
+    # ✅ FIXED REDIRECT (use URL name, NOT hardcoded path)
+    return redirect('patient_list')

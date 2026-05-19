@@ -8,9 +8,9 @@ def add_doctor(request):
 
     if request.method == 'POST':
 
-        name = request.POST['name']
-        specialization = request.POST['specialization']
-        phone = request.POST['phone']
+        name = request.POST.get('name')
+        specialization = request.POST.get('specialization')
+        phone = request.POST.get('phone')
 
         Doctor.objects.create(
             name=name,
@@ -18,12 +18,10 @@ def add_doctor(request):
             phone=phone
         )
 
-        return redirect('/doctors/list/')
+        # ✅ FIXED REDIRECT
+        return redirect('doctor_list')
 
     return render(request, 'doctors/add_doctor.html')
-
-
-# DOCTOR LIST
 
 def doctor_list(request):
 
