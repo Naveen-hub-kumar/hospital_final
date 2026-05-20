@@ -1,25 +1,69 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Doctor
-
+from django.contrib.auth.models import User
+from users.models import UserProfile
 
 # ADD DOCTOR
+
+# def add_doctor(request):
+
+#     if request.method == 'POST':
+
+#         name = request.POST.get('name')
+#         specialization = request.POST.get('specialization')
+#         phone = request.POST.get('phone')
+
+#         Doctor.objects.create(
+#             name=name,
+#             specialization=specialization,
+#             phone=phone
+#         )
+
+#         # ✅ FIXED REDIRECT
+#         return redirect('doctor_list')
+
+#     return render(request, 'doctors/add_doctor.html')
 
 def add_doctor(request):
 
     if request.method == 'POST':
 
-        name = request.POST.get('name')
-        specialization = request.POST.get('specialization')
-        phone = request.POST.get('phone')
+        # FORM DATA
+
+        name = request.POST['name']
+
+        specialization = request.POST['specialization']
+
+        phone = request.POST['phone']
+
+        username = request.POST['username']
+
+        password = request.POST['password']
+
+        # CREATE LOGIN USER
+
+        user = User.objects.create_user(
+            username=username,
+            password=password
+        )
+
+        # CREATE ROLE
+
+        UserProfile.objects.create(
+            user=user,
+            role='doctor'
+        )
+
+        # CREATE DOCTOR
 
         Doctor.objects.create(
+            user=user,
             name=name,
             specialization=specialization,
             phone=phone
         )
 
-        # ✅ FIXED REDIRECT
-        return redirect('doctor_list')
+        return redirect('/doctors/')
 
     return render(request, 'doctors/add_doctor.html')
 

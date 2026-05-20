@@ -1,68 +1,96 @@
 {% extends 'users/admin_dashboard.html' %}
+
 {% block content %}
-    <style>
 
-        body{
-            font-family:Arial;
-            background:#f4f6f9;
-        }
+<style>
 
-        .container{
-            width:400px;
-            margin:50px auto;
-            background:white;
-            padding:30px;
-            border-radius:10px;
-            box-shadow:0 0 10px rgba(0,0,0,0.1);
-        }
+    .doctor-form-container{
+        width:450px;
+        margin:40px auto;
+        background:white;
+        padding:30px;
+        border-radius:10px;
+        box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
 
-        input{
-            width:100%;
-            padding:10px;
-            margin-top:10px;
-        }
+    .doctor-form-container h1{
+        text-align:center;
+        margin-bottom:25px;
+        color:#333;
+    }
 
-        button{
-            margin-top:15px;
-            padding:10px;
-            width:100%;
-            background:#007bff;
-            color:white;
-            border:none;
-        }
+    .doctor-form-container input{
+        width:100%;
+        padding:12px;
+        margin-bottom:15px;
+        border:1px solid #ccc;
+        border-radius:5px;
+        font-size:15px;
+    }
 
-    </style>
+    .doctor-form-container input:focus{
+        border-color:#007bff;
+        outline:none;
+    }
 
-</head>
+    .doctor-form-container button{
+        width:100%;
+        padding:12px;
+        background:#007bff;
+        color:white;
+        border:none;
+        border-radius:5px;
+        font-size:16px;
+        cursor:pointer;
+    }
 
-<body>
+    .doctor-form-container button:hover{
+        background:#0056b3;
+    }
 
-    <div class="container">
+</style>
 
-        <h2>Add Doctor</h2>
+<div class="doctor-form-container">
 
-        <form method="POST">
+    <h1>Add Doctor</h1>
 
-            {% csrf_token %}
+    <form method="POST">
 
-            <input type="text"
-                   name="name"
-                   placeholder="Doctor Name">
+        {% csrf_token %}
 
-            <input type="text"
-                   name="specialization"
-                   placeholder="Specialization">
+        <input type="text"
+               name="name"
+               placeholder="Doctor Name"
+               required>
 
-            <input type="text"
-                   name="phone"
-                   placeholder="Phone Number">
+        <input type="text"
+               name="specialization"
+               placeholder="Specialization"
+               required>
 
-            <button type="submit">
-                Save Doctor
-            </button>
+        <input type="text"
+               name="phone"
+               placeholder="Phone"
+               required>
 
-        </form>
+        <input type="text"
+               name="username"
+               placeholder="Username"
+               required>
 
-    </div>
+        <input type="password"
+               name="password"
+               placeholder="Password"
+               required>
 
-{% endblock content %}
+        <button type="submit">
+
+            Add Doctor
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

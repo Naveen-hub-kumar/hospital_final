@@ -1,0 +1,67 @@
+{% extends 'doctors/base.html' %}
+
+{% block content %}
+
+<h1>
+
+    Welcome Dr. {{ doctor.name }}
+
+</h1>
+
+<div class="card">
+
+    <h2>Total Appointments</h2>
+
+    <h1>{{ appointments.count }}</h1>
+
+</div>
+
+<div class="card">
+
+    <h2>Today's Appointments</h2>
+
+    <h1>{{ today_appointments.count }}</h1>
+
+</div>
+
+<div class="card">
+
+    <h2>Recent Appointments</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Patient</th>
+
+            <th>Date</th>
+
+        </tr>
+
+        {% for appointment in appointments %}
+
+        <tr>
+
+            <td>{{ appointment.patient.name }}</td>
+
+            <td>{{ appointment.appointment_date }}</td>
+
+        </tr>
+
+        {% empty %}
+
+        <tr>
+
+            <td colspan="2">
+                No Appointments Found
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endblock %}
