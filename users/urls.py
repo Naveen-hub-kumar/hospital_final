@@ -27,4 +27,18 @@ path('doctor-appointments/', doctor_appointments, name='doctor_appointments'),
 
 path('doctor-patients/', doctor_patients, name='doctor_patients'),
 
+#  path('api/users/', UserListCreateAPI.as_view(),name='user_api')
+
+ path(
+        'api/users/',
+        UserListCreateAPI.as_view(),
+        name='user_api'
+    ),
+
+    path(
+        'api/users/<int:pk>/',
+        UserRetrieveUpdateDeleteAPI.as_view(),
+        name='user_detail_api'
+    ),
+
 ]

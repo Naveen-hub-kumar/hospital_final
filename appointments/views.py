@@ -1,5 +1,23 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
+
+
+from datetime import datetime
+from rest_framework.views import APIView
+
+from rest_framework.response import Response
+
+from rest_framework import status
+
+from django.shortcuts import get_object_or_404
+
+from .models import Appointment
+
+from .serializers import AppointmentSerializer
+from django.shortcuts import render, redirect, get_object_or_404
+
+from django.contrib import messages
+
 # from .models import Appointment
 
 # from doctors.models import Doctor
@@ -311,3 +329,100 @@ def delete_appointment(request, id):
     appointment.delete()
 
     return redirect('/appointments/')
+
+
+
+
+
+
+
+#================================API CREATION===========================
+
+
+class AppointmentListCreateAPI(APIView):
+
+    #  GET all patients
+    # class AppointmentListCreateAPI(APIView):
+
+    def get(self, request):
+
+        appointments = Appointment.objects.all()
+
+        serializer = AppointmentSerializer(
+            appointments,
+            many=True
+        )
+
+        return Response(serializer.data)
+    #  CREATE new patient
+    def post(self, request):
+        serializer = AppointmentSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# RETRIEVE + UPDATE + DELETE
+class AppointmentRetrieveUpdateDeleteAPI(APIView):
+
+    #  GET single appointment
+    def get(self, request, pk):
+
+        appointment = get_object_or_404(
+            Appointment,
+            pk=pk
+        )
+
+        serializer = AppointmentSerializer(appointment)
+
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
+
+    #  UPDATE appointment
+    def patch(self, request, pk):
+
+        appointment = get_object_or_404(
+            Appointment,
+            pk=pk
+        )
+
+        serializer = AppointmentSerializer(
+            appointment,
+            data=request.data,
+            partial=True
+        )
+
+        if serializer.is_valid():
+
+            serializer.save()
+
+            return Response(
+                serializer.data,
+                status=status.HTTP_200_OK
+            )
+
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    # DELETE appointment
+    def delete(self, request, pk):
+
+        appointment = get_object_or_404(
+            Appointment,
+            pk=pk
+        )
+
+        appointment.delete()
+
+        return Response(
+            {
+                "message": "Appointment deleted successfully"
+            },
+            status=status.HTTP_200_OK
+        )

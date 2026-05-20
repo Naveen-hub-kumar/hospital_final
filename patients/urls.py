@@ -16,4 +16,28 @@ urlpatterns = [
 
     path('delete/<int:id>/', delete_patient, name='delete_patient'),
 
+
+     #API URLS 
+
+      path(
+
+        'api/',
+
+        PatientListCreateAPI.as_view(),
+
+        name='patient_api'
+
+    ),
+
+    path(
+
+        'api/<int:pk>/',
+
+        PatientRetrieveUpdateDeleteAPI.as_view(),
+
+        name='patient_detail_api'
+
+    ),
+    #path('api/patients/<int:pk>/', PatientRetrieveUpdateDeleteAPI.as_view(),name='patient_update'),
+
 ]

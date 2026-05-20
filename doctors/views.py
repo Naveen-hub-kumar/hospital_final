@@ -3,6 +3,23 @@ from .models import Doctor
 from django.contrib.auth.models import User
 from users.models import UserProfile
 
+#from .forms import PatientForm
+from datetime import datetime
+from rest_framework.views import APIView
+
+from rest_framework.response import Response
+
+from rest_framework import status
+
+from django.shortcuts import get_object_or_404
+
+from .models import Doctor
+
+from .serializers import DoctorSerializer
+from django.shortcuts import render, redirect, get_object_or_404
+
+from django.contrib import messages
+
 # ADD DOCTOR
 
 # def add_doctor(request):
@@ -123,3 +140,60 @@ def delete_doctor(request, id):
     doctor.delete()
 
     return redirect('/doctors/')
+
+
+
+class DoctorListCreateAPI(APIView):
+
+    # 🔹 GET all patients
+    def get(self, request):
+        doctors = Doctor.objects.all()
+
+        serializer = DoctorSerializer(doctors, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # 🔹 CREATE new patient
+    def post(self, request):
+        serializer = DoctorSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# RETRIEVE + UPDATE + DELETE
+class DoctorRetrieveUpdateDeleteAPI(APIView):
+
+    # 🔹 GET single patient
+    def get(self, request, pk):
+        doctor = get_object_or_404(Doctor, pk=pk)
+        serializer = DoctorSerializer(doctor)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # 🔹 UPDATE patient (partial update)
+    def patch(self, request, pk):
+        doctor = get_object_or_404(Doctor, pk=pk)
+
+        serializer = DoctorSerializer(
+            doctor,
+            data=request.data,
+            partial=True
+        )
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # 🔹 DELETE patient
+    def delete(self, request, pk):
+        patient = get_object_or_404(Doctor, pk=pk)
+        patient.delete()
+
+        return Response(
+            {"message": "Patient deleted successfully"},
+            status=status.HTTP_200_OK
+        )
