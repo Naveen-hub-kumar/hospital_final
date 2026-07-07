@@ -2,43 +2,109 @@
 
 {% block content %}
 
-<h1>My Patients</h1>
+<style>
 
-<div class="card">
+.container{
+    width:90%;
+    margin:30px auto;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-    <table>
+.title{
+    color:#0d6efd;
+    margin-bottom:20px;
+}
 
-        <tr>
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
 
-            <th>Patient Name</th>
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
 
-            <th>Phone</th>
+th{
+    background:#0d6efd;
+    color:white;
+    padding:15px;
+    text-align:left;
+}
 
-        </tr>
+td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+}
 
-        {% for patient in patients %}
+tr:nth-child(even){
+    background:#f8f9fa;
+}
 
-        <tr>
+tr:hover{
+    background:#e8f4ff;
+}
 
-            <td>{{ patient.name }}</td>
+.no-data{
+    text-align:center;
+    color:red;
+    font-weight:bold;
+    padding:20px;
+}
 
-            <td>{{ patient.phone }}</td>
+</style>
 
-        </tr>
+<div class="container">
 
-        {% empty %}
+    <h1 class="title">
+        👨‍⚕️ My Patients
+    </h1>
 
-        <tr>
+    <div class="card">
 
-            <td colspan="2">
-                No Patients Found
-            </td>
+        <table>
 
-        </tr>
+            <thead>
 
-        {% endfor %}
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Phone Number</th>
+                </tr>
 
-    </table>
+            </thead>
+
+            <tbody>
+
+                {% for patient in patients %}
+
+                <tr>
+
+                    <td>{{ patient.name }}</td>
+
+                    <td>{{ patient.phone }}</td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="2" class="no-data">
+                        No Patients Found
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
 
 </div>
 

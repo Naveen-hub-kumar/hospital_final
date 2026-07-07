@@ -2,43 +2,123 @@
 
 {% block content %}
 
-<h1>My Appointments</h1>
+<style>
 
-<div class="card">
+.container{
+    width:90%;
+    margin:30px auto;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-    <table>
+.title{
+    color:#0d6efd;
+    margin-bottom:20px;
+}
 
-        <tr>
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
 
-            <th>Patient</th>
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
 
-            <th>Date</th>
+th{
+    background:#0d6efd;
+    color:white;
+    padding:15px;
+    text-align:left;
+}
 
-        </tr>
+td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+}
 
-        {% for appointment in appointments %}
+tr:nth-child(even){
+    background:#f8f9fa;
+}
 
-        <tr>
+tr:hover{
+    background:#e8f4ff;
+}
 
-            <td>{{ appointment.patient.name }}</td>
+.status{
+    background:#28a745;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
 
-            <td>{{ appointment.appointment_date}}</td>
+.no-data{
+    text-align:center;
+    color:red;
+    font-weight:bold;
+    padding:20px;
+}
 
-        </tr>
+</style>
 
-        {% empty %}
+<div class="container">
 
-        <tr>
+    <h1 class="title">
+        📅 My Appointments
+    </h1>
 
-            <td colspan="2">
-                No Appointments Found
-            </td>
+    <div class="card">
 
-        </tr>
+        <table>
 
-        {% endfor %}
+            <thead>
 
-    </table>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Appointment Date</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for appointment in appointments %}
+
+                <tr>
+
+                    <td>{{ appointment.patient.name }}</td>
+
+                    <td>{{ appointment.appointment_date }}</td>
+
+                    <td>
+                        <span class="status">Scheduled</span>
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="3" class="no-data">
+                        No Appointments Found
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
 
 </div>
 

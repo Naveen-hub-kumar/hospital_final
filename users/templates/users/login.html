@@ -1,64 +1,191 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-    <title>Hospital Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
+<title>Hospital Login</title>
 
-        body{
-            margin:0;
-            font-family:Arial;
-            background:#f4f6f9;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            height:100vh;
-        }
+<style>
 
-        .login-box{
-            width:350px;
-            background:white;
-            padding:30px;
-            border-radius:10px;
-            box-shadow:0 0 10px rgba(0,0,0,0.1);
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
 
-        h2{
-            text-align:center;
-            color:#007bff;
-        }
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-        input{
-            width:100%;
-            padding:12px;
-            margin-top:15px;
-            border:1px solid #ccc;
-            border-radius:5px;
-        }
+    background:
+        linear-gradient(
+            rgba(15,76,129,0.55),
+            rgba(15,76,129,0.55)
+        ),
+        url("{% static 'images/hostiotal.avif' %}");
 
-        button{
-            width:100%;
-            padding:12px;
-            margin-top:20px;
-            border:none;
-            background:#007bff;
-            color:white;
-            border-radius:5px;
-            cursor:pointer;
-        }
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
 
-        button:hover{
-            background:#0056b3;
-        }
+.login-box{
 
-        .error{
-            color:red;
-            text-align:center;
-        }
+    width:430px;
 
-    </style>
+    background:rgba(255,255,255,.90);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:20px;
+
+    padding:40px;
+
+    text-align:center;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+
+    animation:fadeIn .8s ease;
+
+}
+
+.logo{
+
+    width:90px;
+
+    margin-bottom:15px;
+
+}
+
+h2{
+
+    color:#0f4c81;
+
+    font-size:40px;
+
+    margin-bottom:10px;
+
+}
+
+.subtitle{
+
+    color:#666;
+
+    margin-bottom:30px;
+
+    font-size:18px;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:16px;
+
+    margin:12px 0;
+
+    border-radius:10px;
+
+    border:1px solid #ddd;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+input:focus{
+
+    outline:none;
+
+    border-color:#0f4c81;
+
+    box-shadow:0 0 12px rgba(15,76,129,.4);
+
+}
+
+button{
+
+    width:100%;
+
+    padding:16px;
+
+    margin-top:20px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#0f4c81;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#08375d;
+
+    transform:translateY(-2px);
+
+}
+
+.error{
+
+    color:red;
+
+    margin-bottom:15px;
+
+    font-weight:bold;
+
+}
+
+.footer{
+
+    margin-top:25px;
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+</style>
 
 </head>
 
@@ -68,11 +195,17 @@
 
     <h2>🏥 Hospital Login</h2>
 
+    <p class="subtitle">
+        Hospital Management System
+    </p>
+
     {% if error %}
 
-        <p class="error">
-            {{ error }}
-        </p>
+    <p class="error">
+
+        {{ error }}
+
+    </p>
 
     {% endif %}
 
@@ -80,23 +213,34 @@
 
         {% csrf_token %}
 
-        <input type="text"
-               name="username"
-               placeholder="Enter Username"
-               required>
+        <input
+        type="text"
+        name="username"
+        placeholder="👤 Username"
+        required>
 
-        <input type="password"
-               name="password"
-               placeholder="Enter Password"
-               required>
+        <input
+        type="password"
+        name="password"
+        placeholder="🔒 Password"
+        required>
 
         <button type="submit">
+
             Login
+
         </button>
 
     </form>
 
+    <div class="footer">
+
+        © 2026 Hospital Management System
+
+    </div>
+
 </div>
 
 </body>
+
 </html>
