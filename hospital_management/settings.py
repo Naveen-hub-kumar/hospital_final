@@ -38,9 +38,9 @@ ALLOWED_HOSTS = [
     "hospital-management-system.onrender.com",
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://hospital-management-system.onrender.com",
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://hospital-management-system.onrender.com",
+# ]
 # Application definition
 
 INSTALLED_APPS = [
