@@ -35,12 +35,12 @@ DEBUG = False
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "hospital-management-system.onrender.com",
+    "hospital-management-system-mgs0.onrender.com",
 ]
 
-# CSRF_TRUSTED_ORIGINS = [
-#     "https://hospital-management-system.onrender.com",
-# ]
+CSRF_TRUSTED_ORIGINS = [
+    "https://hospital-management-system-mgs0.onrender.com",
+]
 # Application definition
 
 INSTALLED_APPS = [
