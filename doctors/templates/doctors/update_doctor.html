@@ -2,6 +2,74 @@
 
 {% block content %}
 
+<div style="max-width: 600px; margin: 40px auto; background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-family: Arial, sans-serif;">
+
+    <h1 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">
+        Update Doctor
+    </h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
+            Doctor Name
+        </label>
+
+        <input
+            type="text"
+            name="name"
+            value="{{ doctor.name }}"
+            style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; box-sizing: border-box;"
+        >
+
+        <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
+            Specialization
+        </label>
+
+        <input
+            type="text"
+            name="specialization"
+            value="{{ doctor.specialization }}"
+            style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; box-sizing: border-box;"
+        >
+
+        <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">
+            Phone Number
+        </label>
+
+        <input
+            type="text"
+            name="phone"
+            value="{{ doctor.phone }}"
+            style="width: 100%; padding: 12px; margin-bottom: 30px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; box-sizing: border-box;"
+        >
+
+        <div style="text-align: center;">
+
+            <button
+                type="submit"
+                style="background-color: #28a745; color: white; border: none; padding: 12px 30px; font-size: 16px; border-radius: 6px; cursor: pointer; margin-right: 10px;">
+                Update
+            </button>
+
+            <a
+                href="/doctors"
+                style="display: inline-block; background-color: #6c757d; color: white; text-decoration: none; padding: 12px 30px; border-radius: 6px; font-size: 16px;">
+                Cancel
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock content %}
+{% comment %} {% extends 'users/admin_dashboard.html' %}
+
+{% block content %}
+
     <h1>Update Doctor</h1>
 
     <form method="POST">
@@ -32,4 +100,4 @@
 
     </form>
 
-{% endblock content %}
+{% endblock content %} {% endcomment %}

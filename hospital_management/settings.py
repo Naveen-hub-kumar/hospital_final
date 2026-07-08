@@ -23,14 +23,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9tni*!d9jn9ixqlw9wt0_9g01q9=$!332_lx+(cg&%_@ml2$&z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = True
 
-ALLOWED_HOSTS = ["hospital-management-system.onrender.com"]
+# ALLOWED_HOSTS = ["hospital-management-system.onrender.com"]
 
-CSRF_TRUSTED_ORIGINS = [
-      "https://hospital-management-system.onrender.com"
+# CSRF_TRUSTED_ORIGINS = [
+#       "https://hospital-management-system.onrender.com"
+# ]
+DEBUG = True
+
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "hospital-management-system.onrender.com",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://hospital-management-system.onrender.com",
+]
 # Application definition
 
 INSTALLED_APPS = [

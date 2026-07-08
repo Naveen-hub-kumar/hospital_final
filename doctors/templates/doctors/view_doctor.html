@@ -2,6 +2,41 @@
 
 {% block content %}
 
+<div style="max-width: 600px; margin: 40px auto; background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-family: Arial, sans-serif;">
+
+    <h1 style="text-align: center; color: #2c3e50; margin-bottom: 25px;">
+        Doctor Details
+    </h1>
+
+    <div style="margin-bottom: 18px; padding: 12px; background-color: #f8f9fa; border-left: 5px solid #007bff; border-radius: 6px;">
+        <strong style="color: #333;">Name:</strong>
+        <span style="color: #555;">{{ doctor.name }}</span>
+    </div>
+
+    <div style="margin-bottom: 18px; padding: 12px; background-color: #f8f9fa; border-left: 5px solid #28a745; border-radius: 6px;">
+        <strong style="color: #333;">Specialization:</strong>
+        <span style="color: #555;">{{ doctor.specialization }}</span>
+    </div>
+
+    <div style="margin-bottom: 25px; padding: 12px; background-color: #f8f9fa; border-left: 5px solid #ffc107; border-radius: 6px;">
+        <strong style="color: #333;">Phone:</strong>
+        <span style="color: #555;">{{ doctor.phone }}</span>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="/doctors"
+           style="display: inline-block; padding: 12px 28px; background-color: #007bff; color: white; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: bold;">
+            ← Back
+        </a>
+    </div>
+
+</div>
+
+{% endblock content %}
+{% comment %} {% extends 'users/admin_dashboard.html' %}
+
+{% block content %}
+
     <h1>Doctor Details</h1>
 
     <p>Name: {{ doctor.name }}</p>
@@ -13,4 +48,4 @@
     <a href="/doctors">
         Back
     </a>
-{% endblock content %}
+{% endblock content %} {% endcomment %}
